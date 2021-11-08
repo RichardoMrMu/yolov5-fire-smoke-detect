@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+*.avi
+*.mp4
+build/
