@@ -1,12 +1,10 @@
-# A C++ implementation of Yolov5 and Deepsort in Jetson Xavier nx and Jetson nano
+# A C++ implementation of Yolov5 to detect fire or smoke in the wild in Jetson Xavier nx and Jetson nano
 This repository uses yolov5 and deepsort to follow humna heads which can run in Jetson Xavier nx and Jetson nano. 
-In Jetson Xavier Nx, it can achieve 10 FPS when images contain heads about 70+(you can try python version, when you use python version, you can find it very slow in Jetson Xavier nx , and Deepsort can cost nearly 1s).
+In Jetson Xavier Nx, it can achieve 33 FPS.
 
-<img src="assets/yolosort.gif" >
-
-Thanks for [B.Q Long](https://github.com/lbq779660843), offer the windows cmakelists.txt. If you want run this rep in windows, you can use [CMakeLists_deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_deepsort-tensorrt_win10.txt) and [CMakeLists_yolov5-deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_yolov5-deepsort-tensorrt_win10.txt). 
-
-You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1nR4y1H7sR/), or [YOUTUBE](https://www.youtube.com/watch?v=29vEi-7mEic) and [YOUTUBE](https://youtu.be/mVq3pWNjb3E).
+<img src="assets/yolofire.gif" >
+ 
+You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1VT4y1975b), or [YOUTUBE](https://www.youtube.com/watch?v=5Ysqc5bWhBM).
 
 ## Requirement
 1. Jetson nano or Jetson Xavier nx
@@ -22,20 +20,26 @@ You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1nR4y1H7sR
 11. scipy 1.5.4
 
 
-if you have problem in this project, you can see this [artical](https://blog.csdn.net/weixin_42264234/article/details/120152117).
+if you have problem in this project, you can see this [artical](https://blog.csdn.net/weixin_42264234/article/details/121214079).
+
+## Achieve and Experiment
+- Int8.
+- yolov5-s
+- yolov5-m
+
 
 ## Comming soon
-- [ ] Int8 .
-- [ ] IOU Tracking.
 - [ ] Faster and use less memory.
+  
 ## Speed
 
-Whole process time from read image to finished deepsort (include every img preprocess and postprocess)
-and attention!!! the number of deepsort tracking is 70+, not single or 10-20 persons, is 70+. And all results can get in Jetson Xavier nx.
-| Backbone        | before TensorRT without tracking |before TensorRT with tracking |TensortRT(detection)| TensorRT(detection + tracking) | FPS(detection + tracking) |
-| :-------------- | --------------- | ------------------ |--------------|------------------------------ | ------------------------- |
-| Yolov5s_416      | 100ms           | 0.9s|10-15ms|100-150ms                          | 8 ~ 9                   |
-| Yolov5s-640 | 120ms             | 1s|18-20ms|100-150ms                      | 8 ~ 9                     |
+Whole process time from read image to finish process (include every img preprocess and postprocess). And all results can get in Jetson Xavier nx. For python model and code, you can find them in this [project]()
+| Backbone        | before TensorRT |TensortRT(detection)|  FPS(detection) |
+| :--------------: | :--------------: | :--------------: |:--------------:|
+| Yolov5s-640-float16      | 100ms          |60-70ms                          | 14 ~ 18                   |
+| Yolov5m-640-float16 | 120ms             |70-75ms                      | 13 ~ 14                    |
+| Yolov5s-640-int8 |             |30-40ms                      | 25 ~ 33                     |
+| Yolov5m-640-int8 |              |50-60ms                      | 16 ~ 20                    |
 
 ------
 
@@ -43,13 +47,13 @@ and attention!!! the number of deepsort tracking is 70+, not single or 10-20 per
 
 ```shell
 
-git clone https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt.git
-cd yolov5-deepsort-tensorrt
+git clone https://github.com/RichardoMrMu/yolov5-fire-smoke-detect.git
+cd yolov5-fire-smoke-detect
 mkdir build 
 cmake ..
 make 
 ```
-if you meet some errors in cmake and make, please see this [artical](https://blog.csdn.net/weixin_42264234/article/details/120152117) or see Attention.
+if you meet some errors in cmake and make, please see this [artical](https://blog.csdn.net/weixin_42264234/article/details/121214079) or see Attention.
 
 ## Model
 You need two model, one is yolov5 model, for detection, generating from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). And the other is deepsort model, for tracking. You should generate the model the same way.
