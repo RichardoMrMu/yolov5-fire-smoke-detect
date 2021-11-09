@@ -6,6 +6,8 @@ In Jetson Xavier Nx, it can achieve 33 FPS.
  
 You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1VT4y1975b), or [YOUTUBE](https://www.youtube.com/watch?v=5Ysqc5bWhBM).
 
+If you want to try to train your own model, you can see [yolov5-fire-smoke-detect-python](https://github.com/RichardoMrMu/yolov5-fire-smoke-detect-python). Follow the readme to get your own model.
+
 ## Requirement
 1. Jetson nano or Jetson Xavier nx
 2. Jetpack 4.5.1
@@ -206,3 +208,19 @@ sudo ./yolov5 -d yolov5.engine ../samples
 ```
 
 In this way, you can get your own tensorrt yolov5 model. Enjoy it!
+
+## INT8 Quantization
+It has some diffirence between float16 tensorrt engine file and int8. Just like [tensorrtx readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5), Int8 engine file needs calibration images.
+
+For official yolov5 model , you need to downlowd `coco_calid.zip` from this [google drive url ](https://drive.google.com/drive/folders/1s7jE9DtOngZMzJC1uL307J2MiaGwdRSI) or [BAIDUYUN](https://pan.baidu.com/s/1GOm_-JobpyLMAqZWCDUhKg) --- `a9wh` . And unzip to `{project}/build/`.
+
+Then  change `yolov5.cpp`'s  10 line from `USE_FLOAT16` to `USE_INT8`.And run this :
+
+```shell
+cmake ..
+make 
+// yolov5s
+sudo ./yolov5 -s yolov5s.wts yolov5s-int8.engine s
+// testyour engine file
+sudo ./yolov5 -d yolov5s-int8.engine ../samples
+```
