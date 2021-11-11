@@ -113,32 +113,14 @@ sudo ./yolov5 -d yolov5s.engine ../samples
 Then you get the yolov5s.engine, and you can put `yolov5s.engine` in My project. For example
 
 ```shell
-cd {yolov5-deepsort-tensorrt}
+cd {yolov5-fire-smoke-detect}
 mkdir resources
-cp {tensorrtx}/yolov5/build/yolov5s.engine {yolov5-deepsort-tensorrt}/resources
+cp {tensorrtx}/yolov5/build/yolov5s.engine {yolov5-fire-smoke-detect}/resources
 ```
 
-5. Get deepsort engine file
-You can get deepsort pretrained model in this [drive url](https://drive.google.com/drive/folders/1xhG0kRH1EX5B9_Iz8gQJb7UNnn_riXi6)
-and ckpt.t7 is ok.
-```shell
-git clone https://github.com/RichardoMrMu/deepsort-tensorrt.git
-// 根据github的说明
-cp {deepsort-tensorrt}/exportOnnx.py {deep_sort_pytorch}/
-python3 exportOnnx.py
-mv {deep_sort_pytorch}/deepsort.onnx {deepsort-tensorrt}/resources
-cd {deepsort-tensorrt}
-mkdir build
-cd build
-cmake ..
-make 
-.onnx2engine ../resources/deepsort.onnx ../resources/deepsort.engine
-// test
-./demo ../resource/deepsort.engine ../resources/track.txt
-```
-After all 5 step, you can get the yolov5s.engine and deepsort.engine.
+After all 4 step, you can get the yolov5s.engine.
 
-You may face some problems in getting yolov5s.engine and deepsort.engine, you can upload your issue in github or [csdn artical](https://blog.csdn.net/weixin_42264234/article/details/120152117).
+You may face some problems in getting yolov5s.engine, you can upload your issue in github or [csdn artical](https://blog.csdn.net/weixin_42264234/article/details/121214079).
 <details>
 <summary>Different versions of yolov5</summary>
 
