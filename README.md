@@ -35,7 +35,7 @@ if you have problem in this project, you can see this [artical](https://blog.csd
   
 ## Speed
 
-Whole process time from read image to finish process (include every img preprocess and postprocess). And all results can get in Jetson Xavier nx. For python model and code, you can find them in this [project]()
+Whole process time from read image to finish process (include every img preprocess and postprocess). And all results can get in Jetson Xavier nx. For python model and code, you can find them in this [project yolov5-fire-smoke-detect-python](https://github.com/RichardoMrMu/yolov5-fire-smoke-detect-python)
 | Backbone        | before TensorRT |TensortRT(detection)|  FPS(detection) |
 | :--------------: | :--------------: | :--------------: |:--------------:|
 | Yolov5s-640-float16      | 100ms          |60-70ms                          | 14 ~ 18                   |
