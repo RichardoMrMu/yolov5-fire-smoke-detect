@@ -1,5 +1,5 @@
 # A C++ implementation of Yolov5 to detect fire or smoke in the wild in Jetson Xavier nx and Jetson nano
-This repository uses yolov5 and deepsort to follow humna heads which can run in Jetson Xavier nx and Jetson nano. 
+This repository uses yolov5  to detect fire and smoke in the wild which can run in Jetson Xavier nx and Jetson nano. 
 In Jetson Xavier Nx, it can achieve 33 FPS.
 
 <img src="assets/yolofire.gif" >
@@ -58,14 +58,14 @@ make
 if you meet some errors in cmake and make, please see this [artical](https://blog.csdn.net/weixin_42264234/article/details/121214079) or see Attention.
 
 ## Model
-You need two model, one is yolov5 model, for detection, generating from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). And the other is deepsort model, for tracking. You should generate the model the same way.
+You need yolov5 model, for detection, generating from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). 
+
 ### Generate yolov5 model
 For yolov5 detection model, I choose yolov5s, and choose `yolov5s.pt->yolov5s.wts->yolov5s.engine`
-Note that, used models can get from [yolov5](https://github.com/ultralytics/yolov5) and [deepsort](https://github.com/ZQPei/deep_sort_pytorch), and if you need to use your own model, you can follow the `Run Your Custom Model`.
+Note that, used models can get from [yolov5](https://github.com/ultralytics/yolov5) and if you need to use your own model, you can follow the `Run Your Custom Model`.
 You can also see [tensorrtx official readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5)
 
 1. Get yolov5 repository
-
 
 Note that, here uses the official pertained model.And I use yolov5-5, v5.0. So if you train your own model, please be sure your yolov5 code is v5.0.
 
